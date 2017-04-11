@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+debug.log
+src/**/*.js
+!src/systemjs.config.extras.js
+!src/systemjs.config.js
+*.js.map
+aot
+_temp
