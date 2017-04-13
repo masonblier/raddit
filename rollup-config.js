@@ -20,13 +20,24 @@ export default {
     console.warn( warning.message );
   },
   plugins: [
-    nodeResolve({jsnext: true, module: true, extensions: [ '.ts', '.js', '.json' ]}),
+    nodeResolve({jsnext: true, module: true, browser: true, extensions: [ '.ts', '.js', '.json' ], skip: [ 'firebase' ]}),
     typescript({
       typescript: require("typescript")
     }),
     commonjs({
-      include: ['node_modules/rxjs/**'],
+      include: [
+        'node_modules/rxjs/**',
+        'node_modules/angularfire2/**'
+      ],
+      namedExports: {
+        'node_modules/angularfire2/node_modules/firebase/firebase-browser.js': ['initializeApp', 'auth', 'database'],
+        'node_modules/angularfire2/node_modules/firebase/firebase.js': ['initializeApp', 'auth', 'database'],
+        'node_modules/firebase/firebase-browser.js': ['initializeApp', 'auth', 'database']
+      }
     }),
     uglify()
-  ]
+  ],
+  globals: {
+    firebase: 'firebase'
+  }
 }

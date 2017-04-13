@@ -26,7 +26,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angularfire2':              'npm:angularfire2/bundles/angularfire2.umd.js',
-      'firebase':                  'npm:firebase',
+      'firebase':                  'external',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -42,7 +42,7 @@
       },
       'firebase': {
         defaultExtension: 'js',
-        main: './firebase-browser.js'
+        main: 'node_modules/angularfire2/node_modules/firebase/firebase-browser.js'
       }
     }
   });
