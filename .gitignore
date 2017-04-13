@@ -7,3 +7,4 @@ src/**/*.js
 *.js.map
 aot
 _temp
+firebase.config.ts

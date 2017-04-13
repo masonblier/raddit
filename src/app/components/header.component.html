@@ -1,0 +1,11 @@
+<div class="raddit-header">
+  <div class="login-link pull-right">
+    <div *ngIf="userInfo">
+      <span (click)="doLogout()">Logout [{{userInfo.name}}]</span>
+    </div>
+    <div *ngIf="!userInfo">
+      <span (click)="showLogin()">Login or Sign Up</span>
+    </div>
+  </div>
+  <a routerLink="/"><h1>raddit</h1></a>
+</div>

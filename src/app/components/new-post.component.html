@@ -1,0 +1,14 @@
+<div class="newPostContainer">
+  <h3 class="mbs">New Post</h3>
+  <form id="newPostForm" (ngSubmit)="onSubmit()" #newPostForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" required [(ngModel)]="postModel.title" name="title">
+    </div>
+    <div class="form-group">
+      <label for="body">Body</label>
+      <textarea class="form-control" id="body" [(ngModel)]="postModel.body" name="body"></textarea>
+    </div>
+    <button type="submit" class="pull-right mts">Submit</button>
+  </form>
+</div>

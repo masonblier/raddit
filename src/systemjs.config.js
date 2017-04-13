@@ -25,11 +25,9 @@
 
       // other libraries
       'rxjs':                      'npm:rxjs',
-      'd3':                        'npm:d3/build/d3.js',
-      'd3.geoTile':                 'app/d3.geoTile.js',
+      'angularfire2':              'npm:angularfire2/bundles/angularfire2.umd.js',
+      'firebase':                  'npm:firebase',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'topojson': 'npm:topojson/dist/topojson.js',
-      'ng2-dnd': 'node_modules/ng2-dnd/bundles/index.umd.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -39,6 +37,13 @@
       rxjs: {
         defaultExtension: 'js'
       },
+      angularfire2: {
+        defaultExtension: 'js'
+      },
+      'firebase': {
+        defaultExtension: 'js',
+        main: './firebase-browser.js'
+      }
     }
   });
 })(this);

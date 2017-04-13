@@ -1,4 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 /**
   App Component
@@ -10,10 +11,13 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 })
 export class AppComponent  {
   name = 'RadditApp';
+  posts: FirebaseListObservable<any[]>;
 
-  constructor(private cdref: ChangeDetectorRef) { }
+  constructor(af: AngularFire) {
+    this.posts = af.database.list('/posts');
+  }
 
   onDataChange(nextData: any) {
-    this.cdref.detectChanges();
+    // this.cdref.detectChanges();
   }
 }
