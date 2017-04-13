@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
-/**
-  Post Component
-*/
 @Component({
   moduleId: module.id,
   selector: 'raddit-home',
@@ -11,9 +8,14 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class HomeComponent {
   name = 'RadditHome';
-  posts: FirebaseListObservable<any[]>;
+  posts: any[];
 
   constructor(af: AngularFire) {
-    this.posts = af.database.list('/posts');
+    af.database.list('/posts', {
+      query: {
+        limitToLast: 15,
+        orderByChild: 'createdAt',
+      }
+    }).subscribe(posts => this.posts = posts.reverse());
   }
 }

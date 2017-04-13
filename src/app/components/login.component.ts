@@ -14,6 +14,7 @@ export class LoginComponent implements OnDestroy {
   public visible = false;
   public visibleAnimate = false;
   visibilitySubscription: Subscription;
+  userInfoSubscription: Subscription;
 
   registerModel = new RegisterModel('', '', '', '');
   loginModel = new LoginModel('', '');
@@ -31,8 +32,7 @@ export class LoginComponent implements OnDestroy {
       this.af.auth.subscribe(auth => {
         console.log('auth updated', auth);
         if (auth) {
-          this.af.database.object(`/users/${auth.uid}`).subscribe(info => {
-            console.log('fetched user info', info)
+          this.userInfoSubscription = this.af.database.object(`/users/${auth.uid}`).subscribe(info => {
             this.loginService.setUserInfo({
               uid: auth.uid,
               name: info.name,
@@ -40,6 +40,10 @@ export class LoginComponent implements OnDestroy {
           });
           this.hide();
         } else {
+          if (this.userInfoSubscription) {
+            this.userInfoSubscription.unsubscribe();
+            this.userInfoSubscription = null;
+          }
           this.loginService.setUserInfo(null);
         }
       });

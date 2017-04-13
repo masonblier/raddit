@@ -5,6 +5,9 @@ html, body {
   color: black;
 }
 
+a:visited {
+  color: #3050c0;
+}
 .pull-left {
   float: left;
 }
@@ -99,4 +102,45 @@ h1, h2, h3, h4, h5, h6 { margin: 0; }
   display: block;
   width: 300px;
   min-height: 2em;
+}
+
+.post-item {
+  border: 1px solid #e0e0e0;
+  margin-top: 10px;
+  padding: 5px;
+  clear: both;
+  overflow: hidden;
+}
+.post-item-votes, .post-item-votes-static {
+  float: left;
+  width: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+.post-item-votes-static {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.post-item-title {
+  padding: 10px;
+  font-size: 1.2em;
+}
+.upvote, .downvote {
+  color: #999;
+  cursor: pointer;
+}
+.upvote.voted {
+  color: #f90;
+}
+.downvote.voted {
+  color: #53f;
+}
+
+.raddit-post {
+  margin: 20px;
+}
+.raddit-post-body {
+  border: 1px solid #e0e0e0;
+  margin-top: 10px;
+  padding: 5px;
 }

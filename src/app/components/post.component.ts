@@ -13,17 +13,15 @@ import 'rxjs/add/operator/switchMap';
 })
 export class PostComponent implements OnInit {
   name = 'RadditPost';
-  // posts: FirebaseListObservable<any[]>;
+  post: any;
 
-  constructor(af: AngularFire, private route: ActivatedRoute) {
-    console.log('route params', this.route.params)
-    // this.posts = af.database.list('/posts');
+  constructor(private af: AngularFire, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    // this.route.params
-      // .switchMap((params: Params) => this.heroService.getHero(+params['id']))
-      // .subscribe(hero => this.hero = hero);
+    this.route.params
+      .switchMap((params: Params) => {
+        return this.af.database.object(`/posts/${params['id']}`)
+      }).subscribe(post => this.post = post);
   }
-
 }

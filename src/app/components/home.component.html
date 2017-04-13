@@ -1,9 +1,7 @@
 <div class="homeContainer">
   <a class="pull-right" routerLink="/new-post">New Post</a>
   <h1>Latest Posts</h1>
-  <ul>
-    <li class="text" *ngFor="let post of posts | async">
-      <a routerLink="/post/1" routerLinkActive="active">{{post.title}}</a>
-    </li>
-  </ul>
+  <div class="text" *ngFor="let post of posts">
+    <raddit-post-item [postId]="post.$key"></raddit-post-item>
+  </div>
 </div>

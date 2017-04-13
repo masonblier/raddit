@@ -1,0 +1,13 @@
+<div class="post-item" *ngIf="post">
+  <div class="post-item-votes" *ngIf="userInfo">
+    <div class="upvote">⬆</div>
+    <div>{{postVoteScore(post)}}</div>
+    <div class="downvote">⬇</div>
+  </div>
+  <div class="post-item-votes-static" *ngIf="!userInfo">
+    {{postVoteScore(post)}}
+  </div>
+  <div class="post-item-title">
+    <a [routerLink]="'/post/'+post.$key" routerLinkActive="active">{{post.title}}</a>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { HeaderComponent }  from './components/header.component';
 import { LoginComponent }  from './components/login.component';
 import { HomeComponent }  from './components/home.component';
 import { PostComponent }  from './components/post.component';
+import { PostItemComponent }  from './components/post-item.component';
 import { NewPostComponent }  from './components/new-post.component';
 
 import { firebaseConfig } from './firebase.config'
@@ -39,7 +40,9 @@ const firebaseAuthConfig = {
     ], { useHash: true }),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
-  declarations: [ AppComponent, HeaderComponent, LoginComponent, HomeComponent, PostComponent, NewPostComponent ],
+  declarations: [ AppComponent, HeaderComponent, LoginComponent,
+    HomeComponent, PostComponent, NewPostComponent,
+    PostItemComponent ],
   providers: [LoginService],
   bootstrap:    [ AppComponent ]
 })

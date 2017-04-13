@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 export class LoginService {
   visibilityBool$: Observable<boolean>;
   private visibilityBoolSubject: Subject<boolean>;
+  _userInfo: any;
   userInfo$: Observable<Object>;
   private userInfoSubject: Subject<Object>;
 
@@ -26,7 +27,11 @@ export class LoginService {
   getUserInfoObservable() {
     return this.userInfo$;
   }
+  getUserInfo() {
+    return this._userInfo;
+  }
   setUserInfo(info: any) {
+    this._userInfo = info;
     this.userInfoSubject.next(info);
   }
 }
