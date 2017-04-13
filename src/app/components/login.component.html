@@ -4,6 +4,7 @@
     <div class="modal-close type-muted" (click)="hide()">x</div>
     <div class="registerContainer">
       <h3 class="mbs">Register</h3>
+      <div class="type-error">{{registerErrorMessage}}</div>
       <form id="registerForm" (ngSubmit)="onRegisterSubmit()" #registerForm="ngForm">
         <div class="form-group">
           <label for="name">Name</label>
@@ -26,6 +27,7 @@
     </div>
     <div class="loginContainer">
       <h3 class="mbs">Login</h3>
+      <div class="type-error">{{loginErrorMessage}}</div>
       <form id="loginForm" (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
         <div class="form-group">
           <label for="email">Email</label>

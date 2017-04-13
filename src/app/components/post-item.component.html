@@ -1,8 +1,8 @@
 <div class="post-item" *ngIf="post">
   <div class="post-item-votes" *ngIf="userInfo">
-    <div class="upvote">⬆</div>
+    <div [class]="'upvote '+(upvoted(post, userInfo) ? 'voted' : '')" (click)="toggleUpvote(post, userInfo)">⬆</div>
     <div>{{postVoteScore(post)}}</div>
-    <div class="downvote">⬇</div>
+    <div [class]="'downvote '+(downvoted(post, userInfo) ? 'voted' : '')" (click)="toggleDownvote(post, userInfo)">⬇</div>
   </div>
   <div class="post-item-votes-static" *ngIf="!userInfo">
     {{postVoteScore(post)}}

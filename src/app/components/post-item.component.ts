@@ -27,8 +27,36 @@ export class PostItemComponent implements OnInit {
 
   postVoteScore(post: any): number {
     if (post) {
-      console.log('need vote score for post', post)
+      return Object.keys(post.votes).reduce((a,k) => a + parseInt(post.votes[k], 10), 0);
     }
     return 0;
+  }
+
+  upvoted(post: any, userInfo: any): boolean {
+    if (post && userInfo) {
+      if (post.votes[userInfo.uid] > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+  downvoted(post: any, userInfo: any): boolean {
+    if (post && userInfo) {
+      if (post.votes[userInfo.uid] < 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  toggleUpvote(post: any, userInfo: any): void {
+    const upvoted = this.upvoted(post, userInfo);
+    const voteObject = this.af.database.object(`/posts/${post.$key}/votes/${userInfo.uid}`);
+    voteObject.set(upvoted ? 0 : 1);
+  }
+  toggleDownvote(post: any, userInfo: any): void {
+    const downvoted = this.downvoted(post, userInfo);
+    const voteObject = this.af.database.object(`/posts/${post.$key}/votes/${userInfo.uid}`);
+    voteObject.set(downvoted ? 0 : -1);
   }
 }

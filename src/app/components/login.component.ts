@@ -18,6 +18,8 @@ export class LoginComponent implements OnDestroy {
 
   registerModel = new RegisterModel('', '', '', '');
   loginModel = new LoginModel('', '');
+  registerErrorMessage: string;
+  loginErrorMessage: string;
 
   constructor(private loginService: LoginService, public af: AngularFire) {
       this.visibilitySubscription = this.loginService.getVisibilityObservable().subscribe(visible => {
@@ -66,7 +68,7 @@ export class LoginComponent implements OnDestroy {
     this.af.auth.login({
       email: this.loginModel.email,
       password: this.loginModel.password,
-    });
+    }).catch(e => this.loginErrorMessage = e.toString());
   }
   onRegisterSubmit(): void {
     console.log('register!', this.registerModel)
@@ -75,7 +77,7 @@ export class LoginComponent implements OnDestroy {
       email: this.registerModel.email,
       password: this.registerModel.password,
     }).then((auth) => {
-      this.af.database.object(`/users/${auth.uid}`).set({
+      return this.af.database.object(`/users/${auth.uid}`).set({
         name: name,
       }).then(result => {
         console.log('user info saved!', result, auth)
@@ -84,6 +86,6 @@ export class LoginComponent implements OnDestroy {
           name: name,
         });
       });
-    });
+    }).catch(e => this.registerErrorMessage = e.toString());
   }
 }
